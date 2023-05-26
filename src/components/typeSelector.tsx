@@ -1,7 +1,13 @@
 import React, { useState } from 'react';
 import type { FC } from 'react';
-import { Box, Text, useFocus, useFocusManager } from 'ink';
+import { Box, Text } from 'ink';
 import { Select } from '@inkjs/ui';
+
+type Props = {
+	focus: string;
+	changeFocus: (value: 'type' | 'issue' | 'name' | 'done') => void;
+	setOutput: (value: string | undefined) => void;
+};
 
 const TYPES = [
 	{
@@ -22,11 +28,10 @@ const TYPES = [
 	},
 ];
 
-export const TypeSelector: FC = () => {
-	const { focus } = useFocusManager();
-	const { isFocused } = useFocus({ id: 'type' });
-
+export const TypeSelector: FC<Props> = ({ focus, changeFocus, setOutput }) => {
 	const [selectedType, setSelectedType] = useState<string | undefined>();
+
+	const isFocused = focus === 'type';
 
 	return (
 		<Box flexDirection="column">
@@ -36,7 +41,8 @@ export const TypeSelector: FC = () => {
 					options={TYPES}
 					onChange={value => {
 						setSelectedType(value);
-						focus('issue');
+						setOutput(value);
+						changeFocus('issue');
 					}}
 					isDisabled={!isFocused}
 				/>

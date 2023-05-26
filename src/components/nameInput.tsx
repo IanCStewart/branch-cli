@@ -1,14 +1,19 @@
 import React, { useState } from 'react';
 import type { FC } from 'react';
-import { Box, Text, useFocusManager, useFocus } from 'ink';
+import { Box, Text } from 'ink';
 import { TextInput } from '@inkjs/ui';
 
-export const NameInput: FC = () => {
-	const { disableFocus } = useFocusManager();
-	const { isFocused } = useFocus({ id: 'name' });
+type Props = {
+	focus: string;
+	changeFocus: (value: 'type' | 'issue' | 'name' | 'done') => void;
+	setOutput: (value: string | undefined) => void;
+};
 
+export const NameInput: FC<Props> = ({ focus, changeFocus, setOutput }) => {
 	const [value, setValue] = useState<string | undefined>();
 	const [submitted, setSubmitted] = useState<boolean>(false);
+
+	const isFocused = focus === 'name';
 
 	return (
 		<Box flexDirection="column">
@@ -19,7 +24,8 @@ export const NameInput: FC = () => {
 					onChange={setValue}
 					onSubmit={() => {
 						setSubmitted(true);
-						disableFocus();
+						setOutput(value);
+						changeFocus('done');
 					}}
 					isDisabled={!isFocused}
 				/>
