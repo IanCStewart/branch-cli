@@ -1,6 +1,8 @@
 import React from 'react';
 import type { FC } from 'react';
-import { Newline, Text } from 'ink';
+import { Box, Text } from 'ink';
+import { FlagsInput } from './flagsInput.js';
+import { InteractiveMode } from './interactiveMode.js';
 
 type Props = {
 	type?: string;
@@ -8,32 +10,15 @@ type Props = {
 	name?: string;
 };
 
-export const App: FC<Props> = ({ type, issue, name }) => (
-	<Text>
-		<Text>Hello there!</Text>
-		{type && (
-			<>
-				<Newline />
-				<Text>
-					Branch type: <Text color="green">{type}</Text>
-				</Text>
-			</>
-		)}
-		{issue && (
-			<>
-				<Newline />
-				<Text>
-					Issue number: <Text color="green">{issue}</Text>
-				</Text>
-			</>
-		)}
-		{name && (
-			<>
-				<Newline />
-				<Text>
-					Branch name: <Text color="green">{name}</Text>
-				</Text>
-			</>
-		)}
-	</Text>
-);
+export const App: FC<Props> = ({ type, issue, name }) => {
+	return (
+		<Box gap={1} flexDirection="column">
+			<Text>Hello there!</Text>
+			{type || issue || name ? (
+				<FlagsInput type={type} issue={issue} name={name} />
+			) : (
+				<InteractiveMode />
+			)}
+		</Box>
+	);
+};
