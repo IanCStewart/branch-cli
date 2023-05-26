@@ -3,6 +3,7 @@ import type { FC } from 'react';
 import { Box, Text, useFocusManager } from 'ink';
 import { TypeSelector } from './typeSelector.js';
 import { IssueInput } from './issueInput.js';
+import { NameInput } from './nameInput.js';
 
 export const InteractiveMode: FC = () => {
 	const { focus } = useFocusManager();
@@ -18,6 +19,7 @@ export const InteractiveMode: FC = () => {
 			</Text>
 			<TypeSelector />
 			<IssueInput />
+			<NameInput />
 		</Box>
 	);
 };
