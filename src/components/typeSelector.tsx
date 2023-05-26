@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import type { FC } from 'react';
-import { Box, Text } from 'ink';
+import { Box, Text, useFocus, useFocusManager } from 'ink';
 import { Select } from '@inkjs/ui';
 
 const TYPES = [
@@ -23,12 +23,24 @@ const TYPES = [
 ];
 
 export const TypeSelector: FC = () => {
+	const { focus } = useFocusManager();
+	const { isFocused } = useFocus({ id: 'type' });
+
 	const [selectedType, setSelectedType] = useState<string | undefined>();
 
 	return (
 		<Box flexDirection="column">
 			<Text bold>Branch type?</Text>
-			{!selectedType && <Select options={TYPES} onChange={setSelectedType} />}
+			{isFocused && (
+				<Select
+					options={TYPES}
+					onChange={value => {
+						setSelectedType(value);
+						focus('issue');
+					}}
+					isDisabled={!isFocused}
+				/>
+			)}
 			{selectedType && (
 				<Text>
 					Branch type: <Text color="green">{selectedType}</Text>
