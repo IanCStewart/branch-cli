@@ -10,10 +10,10 @@
 	"scripts": {
 		"build": "tsc",
 		"dev": "tsc --watch",
-		"lint": "xo ./src",
+		"lint": "xo",
 		"pretty": "prettier --check .",
 		"typecheck": "tsc -p tsconfig.json",
-		"test": "prettier --check . && xo && ava"
+		"test": "ava"
 	},
 	"files": [
 		"dist"
