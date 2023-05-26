@@ -29,8 +29,14 @@ const cli = meow(
 				type: 'string',
 				shortFlag: 'i',
 			},
+			name: {
+				type: 'string',
+				shortFlag: 'n',
+			},
 		},
 	},
 );
 
-render(<App type={cli.flags.type} issue={cli.flags.issue} />);
+render(
+	<App type={cli.flags.type} issue={cli.flags.issue} name={cli.flags.name} />,
+);
