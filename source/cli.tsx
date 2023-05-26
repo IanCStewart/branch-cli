@@ -2,7 +2,7 @@
 import React from 'react';
 import { render } from 'ink';
 import meow from 'meow';
-import App from './app.js';
+import { App } from './app.js';
 
 const cli = meow(
 	`
@@ -10,7 +10,7 @@ const cli = meow(
 	  $ branch-cli
 
 	Options
-		--name  Your name
+		--type, -t  The type of the branch
 
 	Examples
 	  $ branch-cli --name=Jane
@@ -18,8 +18,14 @@ const cli = meow(
 `,
 	{
 		importMeta: import.meta,
-		flags: {},
+		flags: {
+			type: {
+				type: 'string',
+				shortFlag: 't',
+				choices: ['feature', 'release', 'hotfix', 'support'],
+			},
+		},
 	},
 );
 
-render(<App />);
+render(<App type={cli.flags.type} />);
