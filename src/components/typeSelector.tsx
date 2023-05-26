@@ -27,6 +27,7 @@ export const TypeSelector: FC = () => {
 
 	return (
 		<Box flexDirection="column">
+			<Text bold>Branch type?</Text>
 			{!selectedType && <Select options={TYPES} onChange={setSelectedType} />}
 			{selectedType && (
 				<Text>
