@@ -18,12 +18,8 @@ const cli = meow(
 `,
 	{
 		importMeta: import.meta,
-		flags: {
-			name: {
-				type: 'string',
-			},
-		},
+		flags: {},
 	},
 );
 
-render(<App name={cli.flags.name} />);
+render(<App />);
