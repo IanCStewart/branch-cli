@@ -14,7 +14,7 @@ export const App: FC<Props> = ({ type, issue, name }) => {
 	return (
 		<Box gap={1} flexDirection="column">
 			<Text>Hello there!</Text>
-			{type || issue || name ? (
+			{type ?? issue ?? name ? (
 				<FlagsInput type={type} issue={issue} name={name} />
 			) : (
 				<InteractiveMode />

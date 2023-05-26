@@ -16,11 +16,9 @@ export const FlagsInput: FC<Props> = ({ type, issue, name }) => {
 		<Box gap={1} flexDirection="column">
 			<Text>
 				{type && (
-					<>
-						<Text>
-							Branch type: <Text color="green">{type}</Text>
-						</Text>
-					</>
+					<Text>
+						Branch type: <Text color="green">{type}</Text>
+					</Text>
 				)}
 				{issue && (
 					<>
@@ -32,7 +30,7 @@ export const FlagsInput: FC<Props> = ({ type, issue, name }) => {
 				)}
 				{name && (
 					<>
-						{(type || issue) && <Newline />}
+						{(type ?? issue) && <Newline />}
 						<Text>
 							Branch name: <Text color="green">{name}</Text>
 						</Text>
@@ -42,7 +40,7 @@ export const FlagsInput: FC<Props> = ({ type, issue, name }) => {
 			<StatusMessage variant="info">
 				<Text color="blue">
 					A branch with the following name wil be made:{' '}
-					{`${type ? `${type}/` : ''}${issue ? `${issue}/` : ''}${name}`}
+					{`${type ? `${type}/` : ''}${issue ? `${issue}/` : ''}${name ?? ''}`}
 				</Text>
 			</StatusMessage>
 			{!choice && (

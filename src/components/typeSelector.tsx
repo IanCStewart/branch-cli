@@ -9,7 +9,7 @@ type Props = {
 	setOutput: (value: string | undefined) => void;
 };
 
-const TYPES = [
+const options = [
 	{
 		label: 'Feature',
 		value: 'feature',
@@ -38,13 +38,13 @@ export const TypeSelector: FC<Props> = ({ focus, changeFocus, setOutput }) => {
 			<Text bold>Branch type?</Text>
 			{isFocused && (
 				<Select
-					options={TYPES}
+					options={options}
+					isDisabled={!isFocused}
 					onChange={value => {
 						setSelectedType(value);
 						setOutput(value);
 						changeFocus('issue');
 					}}
-					isDisabled={!isFocused}
 				/>
 			)}
 			{selectedType && (

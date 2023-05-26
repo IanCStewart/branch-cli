@@ -17,7 +17,7 @@ export const InteractiveMode: FC = () => {
 
 	return (
 		<Box flexDirection="column" gap={1}>
-			<Text color="magenta" dimColor>
+			<Text dimColor color="magenta">
 				Interactive branch name generator...
 			</Text>
 			<TypeSelector
@@ -42,7 +42,7 @@ export const InteractiveMode: FC = () => {
 							A branch with the following name wil be made:{' '}
 							{`${typeOutput ? `${typeOutput}/` : ''}${
 								issueOutput ? `${issueOutput}/` : ''
-							}${nameOutput}`}
+							}${nameOutput ?? ''}`}
 						</Text>
 					</StatusMessage>
 					{!choice && (

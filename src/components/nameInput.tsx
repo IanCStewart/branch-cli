@@ -21,13 +21,13 @@ export const NameInput: FC<Props> = ({ focus, changeFocus, setOutput }) => {
 			{isFocused && (
 				<TextInput
 					placeholder="my-awesome-feature"
+					isDisabled={!isFocused}
 					onChange={setValue}
 					onSubmit={() => {
 						setSubmitted(true);
 						setOutput(value);
 						changeFocus('done');
 					}}
-					isDisabled={!isFocused}
 				/>
 			)}
 			{submitted && (

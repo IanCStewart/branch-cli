@@ -61,6 +61,12 @@
 				{
 					"namedComponents": "arrow-function"
 				}
+			],
+			"unicorn/filename-case": [
+				"error",
+				{
+					"case": "camelCase"
+				}
 			]
 		}
 	}
