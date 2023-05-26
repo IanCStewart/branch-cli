@@ -11,6 +11,7 @@ const cli = meow(
 
 	Options
 		--type, -t  The type of the branch
+		--issue, -i  The issue of the branch
 
 	Examples
 	  $ branch-cli --name=Jane
@@ -24,8 +25,12 @@ const cli = meow(
 				shortFlag: 't',
 				choices: ['feature', 'release', 'hotfix', 'support'],
 			},
+			issue: {
+				type: 'string',
+				shortFlag: 'i',
+			},
 		},
 	},
 );
 
-render(<App type={cli.flags.type} />);
+render(<App type={cli.flags.type} issue={cli.flags.issue} />);
